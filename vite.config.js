@@ -10,7 +10,7 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.png", "robots.txt", "apple-touch-icon.png"],
+      includeAssets: ["favicon.png", "apple-touch-icon.png"],
       manifest: {
         name: "PDF Aloud",
         short_name: "pdfaloud",
@@ -40,4 +40,5 @@ export default defineConfig({
       },
     }),
   ],
+  base: '/tts/',
 });

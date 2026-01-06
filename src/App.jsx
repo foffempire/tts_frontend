@@ -18,6 +18,8 @@ const App = () => {
   const speechSynthesisRef = useRef(null);
   const utteranceRef = useRef(null);
 
+  const APIURL = "https://tts-backend-iw1u.onrender.com";
+
   // Initialize speech synthesis and load voices
   useEffect(() => {
     speechSynthesisRef.current = window.speechSynthesis;
@@ -58,7 +60,7 @@ const App = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:8000/upload-pdf", {
+      const response = await fetch(`${APIURL}/upload-pdf`, {
         method: "POST",
         body: formData,
       });
@@ -85,7 +87,7 @@ const App = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/session/${sessionId}/speech-settings`,
+        `${APIURL}/session/${sessionId}/speech-settings`,
         {
           method: "POST",
           headers: {
@@ -166,7 +168,7 @@ const App = () => {
 
         // Update position in backend
         if (sessionId) {
-          fetch(`http://localhost:8000/session/${sessionId}/position`, {
+          fetch(`${APIURL}/session/${sessionId}/position`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -224,7 +226,7 @@ const App = () => {
 
       // Reset position in backend
       if (sessionId) {
-        fetch(`http://localhost:8000/session/${sessionId}/position`, {
+        fetch(`${APIURL}/session/${sessionId}/position`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -245,7 +247,7 @@ const App = () => {
 
     // Update position in backend
     if (sessionId) {
-      fetch(`http://localhost:8000/session/${sessionId}/position`, {
+      fetch(`${APIURL}/session/${sessionId}/position`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -262,7 +264,7 @@ const App = () => {
       if (savedSessionId) {
         try {
           const response = await fetch(
-            `http://localhost:8000/session/${savedSessionId}`
+            `${APIURL}/session/${savedSessionId}`
           );
           if (response.ok) {
             const data = await response.json();
